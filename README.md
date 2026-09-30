@@ -4,20 +4,52 @@ Small python CLI tool for reconnaissance.
 
 ## About
 
-This project was created as my first Python project for fun and practice. It can be used for test a target machine, for example on HackTheBox, TryHackMe etc. There are no any innovation functional or features. Overall, it's just a compilation of basic enumiration tools, I made it for my convenience. Do not take it serious.
+This project was created as my first Python project for fun and practice. It can be used for test a target machine, for example on HackTheBox, TryHackMe etc. There are no any innovation functional or features. Overall, it's just a compilation of basic enumeration tools, I made it for my convenience. Do not take it serious.
 
 ## Features
 
-- Ping host availability check rigth after program start
-- Nmap service/version scan detection
-- Optional DNS subdomain enumiration
-- Custom wordlist support
+### Network
 
-## Reqirements
+- Ping target
+- Nmap scanning
+    - Quick scan
+    - Full port scan
+    - Custom Nmap arguments
+### Web Analysis
 
+- Gobuster
+    - DNS enumeration
+    - Directory enumeration
+
+- Feroxbuster
+
+- FFUF
+    - Virtual host fuzzing
+    - URL fuzzing
+
+### Password Analysis
+
+- John The Ripper
+    - Dictionary mode
+    - Incremental mode
+
+- Hashcat
+    - Dictionary mode
+    - Brute-force
+    - Hash type selection
+
+## Requirements
+
+BTCheck is designed to run on Linux.
+
+- Kali Linux (optional)
 - Python3
 - Nmap
 - Gobuster
+- Hashcat
+- JohnTheRipper
+- FFUF
+- Feroxbuster
 
 ## Installation
 
@@ -35,8 +67,8 @@ python3 main.py
 ## Usage
 The program will ask for:
 - Target IP
-- Domain (after nmap enumiration)
-- Wordlist (after nmap enumiration)
+- Domain (after nmap enumeration)
+- Wordlist (after nmap enumeration)
 ````
 Example:
 

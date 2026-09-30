@@ -4,17 +4,18 @@ Small python CLI tool for reconnaissance.
 
 ## About
 
-This project was created as my first Python project for fun and practice. It can be used for test a target machine, for example on HackTheBox, TryHackMe etc. There are no any innovation functional or features. Overall, it's just a compilation of basic enumiration tools, I made it for my convenience. Do not take it serious.
+This project was created as my first Python project for fun and practice. It can be used for test a target machine, for example on HackTheBox, TryHackMe etc. There are no any innovation functional or features. Overall, it's just a compilation of basic enumeration tools, I made it for my convenience. Do not take it serious.
 
 ## Features
 
-- Ping host availability check rigth after program start
+- Ping host availability check right after program start
 - Nmap service/version scan detection
-- Optional DNS subdomain enumiration
+- Optional DNS subdomain enumeration
 - Custom wordlist support
 
-## Reqirements
+## Requirements
 
+- Kali linux (optional, just could be easier than installing tools one by one)
 - Python3
 - Nmap
 - Gobuster
@@ -35,8 +36,8 @@ python3 main.py
 ## Usage
 The program will ask for:
 - Target IP
-- Domain (after nmap enumiration)
-- Wordlist (after nmap enumiration)
+- Domain (after nmap enumeration)
+- Wordlist (after nmap enumeration)
 ````
 Example:
 

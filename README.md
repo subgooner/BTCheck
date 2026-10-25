@@ -65,23 +65,29 @@ cd BTCheck
 python3 main.py
 
 ## Usage
-The program will ask for:
-- Target IP
-- Domain (after nmap enumeration)
-- Wordlist (after nmap enumeration)
+After program start main menu will open:
 ````
-Example:
-
-Target: 10.10.10.10
-
-Host reachable
-
-Starting Nmap...
-...
-
-Domain: (n to skip): target.htb
-Wordlist: (n to skip): /path/to/wordlist
+    ╔══════════════════════════════════════╗
+    ║               BTCheck                ║
+    ╠══════════════════════════════════════╣
+    ║    [1] Nmap                          ║
+    ║    [2] Web Analysis                  ║
+    ║    [3] Password Analysis             ║
+    ║    [4] Ping target                   ║
+    ║    [0] Exit                          ║
+    ╚══════════════════════════════════════╝
 ````
+
+By typing numbers user can chose option.
+
+Also, some tools can ask other options. 
+For example, in FFUF menu, after choosing option program asks for:
+````
+URL to scan (http://domain.com/FUZZ):
+Wordlist:
+````
+Different tools asks different options
+
 
 ## Disclaimer
 

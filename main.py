@@ -1,5 +1,26 @@
 import subprocess
 
+def run_command(command):
+
+    print(f"\nCommand: {' '.join(command)}")
+    confirm = input("Do you want to continue? [y/n]: ").strip().lower()
+
+    if confirm not in ("y", "", "yes"):
+        print("Canceled")
+        return
+
+    try:
+        result = subprocess.run(command, capture_output=True, text=True)
+
+    except FileNotFoundError:
+        print(f"Tool not found: {command[0]}")
+        return
+
+    print(result.stdout)
+
+    if result.returncode != 0:
+        print(result.stderr)
+
 
 def ping():
 
@@ -13,13 +34,6 @@ def ping():
         print("Host is down")
 
 
-def nmap(command):
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode != 0:
-        return None
-
-    return result.stdout
 
 def gobust():
     print("""
@@ -33,18 +47,7 @@ def gobust():
 
         command = ["gobuster", "dns", "-d", domain, "-w", wordlist]
 
-        print(f"\nCommand: {' '.join(command)}")
-        confirm = input("Do you want to continue? [y/n]: ").strip().lower()
-
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-        else:
-            print("Canceled")
+        run_command(command)
 
     elif choice == "2":
         url = input("URL to scan: ")
@@ -52,20 +55,7 @@ def gobust():
 
         command = ["gobuster", "dir", "-u", url, "-w", wordlist]
 
-        print(f"\nCommand: {' '.join(command)}")
-        confirm = input("Do you want to continue? [y/n]: ")
-
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-        else:
-            print("Canceled")
-    else:
-        print("Canceled")
+        run_command(command)
 
 
 def ferox():
@@ -74,17 +64,7 @@ def ferox():
 
     command = ["feroxbuster", "-u", url, "-w", wordlist]
 
-    print(f"\nCommand: {' '.join(command)}")
-    confirm = input("Do you want to continue? [y/n]: ")
-
-    if confirm in ("y", "", "yes"):
-        result = subprocess.run(command, capture_output=True, text=True)
-        print(result.stdout)
-
-        if result.returncode != 0:
-            print(result.stderr)
-    else:
-        print("Canceled")
+    run_command(command)
 
 def ffuf():
 
@@ -102,18 +82,7 @@ def ffuf():
 
         command = ["ffuf", "-u", url, "-w", wordlist, "-H", f"Host: FUZZ.{host}"]
 
-        print(f"\nCommand: {' '.join(command)}")
-        confirm = input("Do you want to continue? [y/n]: ").strip().lower()
-
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-        else:
-            print("Canceled")
+        run_command(command)
 
     elif choice == "2":
         url = input("URL to scan (http://domain.com/FUZZ): ").strip()
@@ -121,18 +90,8 @@ def ffuf():
 
         command = ["ffuf", "-u", url, "-w", wordlist]
 
-        print(f"\nCommand: {' '.join(command)}")
-        confirm = input("Do you want to continue? [y/n]: ")
+        run_command(command)
 
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-        else:
-            print("Canceled")
     else:
         print("Canceled")
 
@@ -175,21 +134,8 @@ def nmap_menu():
             print("Invalid option")
             continue
 
-        print(f"\nCommand: {' '.join(command)}")
+        run_command(command)
 
-        confirm = input("Continue? [y/n] ").strip().lower()
-        if confirm not in ["", "y", "yes"]:
-            print("Scan cancelled")
-
-            continue
-        output = nmap(command)
-
-        if output is None:
-            print("Nmap error")
-
-            continue
-
-        print(output)
 
 
 def web_menu():
@@ -260,19 +206,7 @@ def JTR():
 
             command = ["john", "--incremental", hash_file]
 
-        print(f"\nCommand: {' '.join(command)}")
-
-        confirm = input("Do you want to continue? [y/n]: ").strip().lower()
-
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-
-        else:
-            print("Canceled")
+        run_command(command)
 
 
 def hashcat():
@@ -341,19 +275,8 @@ def hashcat():
             command = ["hashcat", "-m", hash_mode, "-a", "3", hash_file, mask]
 
         print(f"\nHash type: {hash_name}")
-        print(f"\nCommand: {' '.join(command)}")
 
-        confirm = input("Do you want to continue? [y/n]: ").strip().lower()
-
-        if confirm in ("y", "", "yes"):
-            result = subprocess.run(command, capture_output=True, text=True)
-            print(result.stdout)
-
-            if result.returncode != 0:
-                print(result.stderr)
-
-        else:
-            print("Canceled")
+        run_command(command)
 
 
 def passwd_menu():
